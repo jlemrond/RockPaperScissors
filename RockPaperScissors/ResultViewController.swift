@@ -15,4 +15,25 @@ class ResultViewController: UIViewController {
         
     }
     
+    func generateOpponentResult() -> String {
+        
+        let index = arc4random_uniform(3)
+        let result: String?
+        
+        switch index {
+        case 0: result = "Rock"
+        case 1: result = "Paper"
+        default: result = "Scissor"
+        }
+        
+        if let result = result {
+            print(result)
+            return result
+        } else {
+            return "Scissor"
+        }
+        
+    }
+
+    
 }
