@@ -33,6 +33,7 @@ class SelectionViewController: UIViewController {
         rpsButtons = [rockButton, scissorButton, paperButton]
         
         for x in rpsButtons {
+            x.addTarget(self, action: "selectionMade:", forControlEvents: UIControlEvents.TouchUpInside)
             self.view.addSubview(x)
         }
         
@@ -43,11 +44,24 @@ class SelectionViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func selectionMade(sender: UIButton!) {
+        
+        var controller: ResultViewController
+        
+        controller = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController") as! ResultViewController
+        
+        switch sender {
+        case rockButton: controller.userSelection = "Rock"
+        case paperButton: controller.userSelection = "Paper"
+        case scissorButton: controller.userSelection = "Scissor"
+        default: print("Error with selection")
+        }
+        
+        print("User has selected \(controller.userSelection).")
+        
+        presentViewController(controller, animated: true, completion: nil)
+        
     }
-
 
 }
 

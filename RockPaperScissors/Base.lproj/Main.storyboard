@@ -24,7 +24,7 @@
         <!--Result View Controller-->
         <scene sceneID="MGp-Go-dte">
             <objects>
-                <viewController id="e6Y-Zn-FNq" customClass="ResultViewController" customModule="RockPaperScissors" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResultViewController" id="e6Y-Zn-FNq" customClass="ResultViewController" customModule="RockPaperScissors" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3qf-a2-Dak"/>
                         <viewControllerLayoutGuide type="bottom" id="gPT-Jc-2Qz"/>

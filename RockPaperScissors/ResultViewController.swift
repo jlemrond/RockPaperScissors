@@ -11,10 +11,14 @@ import Foundation
 
 class ResultViewController: UIViewController {
 
+    var userSelection: String!
+    
     override func viewDidLoad() {
         
     }
     
+    
+    //Generate Random Result for 'Opponent'
     func generateOpponentResult() -> String {
         
         let index = arc4random_uniform(3)
