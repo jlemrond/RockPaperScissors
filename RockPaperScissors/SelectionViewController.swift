@@ -25,7 +25,7 @@ class SelectionViewController: UIViewController {
         rockButton.setImage(UIImage(named: "Rock"), forState: .Normal)
         
         scissorButton = UIButton(frame: CGRect(origin: CGPoint(x: 155.0, y: 250.0), size: rpsImgSize))
-        scissorButton.setImage(UIImage(named: "Scissors"), forState: .Normal)
+        scissorButton.setImage(UIImage(named: "Scissor"), forState: .Normal)
         
         paperButton = UIButton(frame: CGRect(origin: CGPoint(x: 265.0, y: 250.0), size: rpsImgSize))
         paperButton.setImage(UIImage(named: "Paper"), forState: .Normal)
@@ -51,13 +51,19 @@ class SelectionViewController: UIViewController {
         controller = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController") as! ResultViewController
         
         switch sender {
-        case rockButton: controller.userSelection = "Rock"
-        case paperButton: controller.userSelection = "Paper"
-        case scissorButton: controller.userSelection = "Scissor"
+        case rockButton:
+            controller.userSelection = RPS.Rock
+            
+        case paperButton:
+            controller.userSelection = RPS.Paper
+            
+        case scissorButton:
+            controller.userSelection = RPS.Scissor
+            
         default: print("Error with selection")
         }
         
-        print("User has selected \(controller.userSelection).")
+        print("User has selected \(controller.userSelection.rawValue).")
         
         presentViewController(controller, animated: true, completion: nil)
         

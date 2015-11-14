@@ -9,42 +9,45 @@
 import UIKit
 import Foundation
 
+enum RPS: String {
+    
+    case Rock = "Rock"
+    case Paper = "Paper"
+    case Scissor = "Scissor"
+    
+    
+    //Use init to generate a random value.
+    init() {
+        let int = arc4random_uniform(3)
+        
+        switch int {
+        case 0:
+            self = .Rock
+        case 1:
+            self = .Paper
+        default:
+            self = .Scissor
+        }
+    }
+    
+}
+
+
 class ResultViewController: UIViewController {
 
-    var userSelection: String!
-    var compSelection: String!
+    var userSelection: RPS!
+    var compSelection: RPS!
     
     override func viewWillAppear(animated: Bool) {
-        compSelection = generateOpponentResult()
+        compSelection = RPS.init()
         print("Comp has selected \(compSelection)")
         
         
         
-        establishWinner()   
+        establishWinner(userSelection, comp: compSelection)
     }
     
     override func viewDidLoad() {
-        
-    }
-    
-    
-    //Generate Random Result for 'Opponent'
-    func generateOpponentResult() -> String {
-        
-        let index = arc4random_uniform(3)
-        let result: String?
-        
-        switch index {
-        case 0: result = "Rock"
-        case 1: result = "Paper"
-        default: result = "Scissor"
-        }
-        
-        if let result = result {
-            return result
-        } else {
-            return "Scissor"
-        }
         
     }
 
@@ -62,28 +65,23 @@ class ResultViewController: UIViewController {
     
     
     //Establish Winner.
-    func establishWinner() {
+    func establishWinner(user: RPS, comp: RPS) {
         
-        let user = convertToNumber(userSelection)
-        let comp = convertToNumber(compSelection)
-        
-        print(user)
-        print(comp)
+        print(user.rawValue)
+        print(comp.rawValue)
         
         if user == comp {
-            print("it's a Tie")
-        } else if user == 1 {
-            if comp == 2 {
-                print("Comp Wins")
-            } else {
-                print("User Wins")
-            }
-        } else if user > comp {
-            print("User Wins")
+            print("It's a tie")
         } else {
-            print("Comp Wins")
-        }
-        
+            switch (user, comp) {
+            case (.Rock, .Scissor), (.Scissor, .Paper), (.Paper, .Rock):
+                print("You Win!")
+            case (.Scissor, .Rock), (.Paper, .Scissor), (.Rock, .Paper):
+                print("You Lose!")
+            default:
+                print("I think something went wrong... Oops")
+            }
+        }   
         
     }
 }
