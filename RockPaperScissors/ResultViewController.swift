@@ -41,6 +41,8 @@ class ResultViewController: UIViewController {
     var playAgain: UIButton!
     var result: UILabel!
     
+    let textColor: UIColor = UIColor(red: CGFloat(91/255.0), green: CGFloat(112/255.0), blue: CGFloat(101/255.0), alpha: 1.0)
+    
     override func viewWillAppear(animated: Bool) {
         compSelection = RPS.init()
         print("Comp has selected \(compSelection)")
@@ -49,6 +51,8 @@ class ResultViewController: UIViewController {
         
         let x = UIButton(frame: CGRect(x: 10, y: 10, width: 10, height: 10))
         self.view.addSubview(x)
+        
+        self.view.backgroundColor = UIColor(red: CGFloat(201/255.0), green: CGFloat(209/255.0), blue: CGFloat(200/255.0), alpha: 1.0)
     }
     
     override func viewDidLoad() {
@@ -58,14 +62,15 @@ class ResultViewController: UIViewController {
         self.view.addSubview(playAgain)
         
         playAgain.setTitle("Play Again", forState: .Normal)
-        playAgain.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        playAgain.setTitleColor(textColor, forState: .Normal)
         playAgain.addTarget(self, action: "playAgainSelected", forControlEvents: UIControlEvents.TouchUpInside)
         
         //Set up Result Label.
         result = UILabel(frame: CGRect(x: 125, y: 250, width: 125, height: 40))
-        result.textColor = UIColor.blackColor()
-        result.textAlignment = .Center
         self.view.addSubview(result)
+        
+        result.textColor = textColor
+        result.textAlignment = .Center
 
     }
     
